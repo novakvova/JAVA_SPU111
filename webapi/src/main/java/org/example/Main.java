@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @SpringBootApplication
@@ -23,7 +24,7 @@ public class Main {
             category.setName("Продукти");
             category.setDescription("Для усіх людей");
             category.setImage("product.jpg");
-            category.setDateCreated(new Date());
+            category.setCreationTime(LocalDateTime.now());
 
             //repository.save(category);
         };
