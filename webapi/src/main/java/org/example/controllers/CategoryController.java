@@ -2,7 +2,9 @@ package org.example.controllers;
 
 import lombok.AllArgsConstructor;
 import org.example.dto.category.CategoryCreateDTO;
+import org.example.dto.category.CategoryItemDTO;
 import org.example.entities.CategoryEntity;
+import org.example.mapper.CategoryMapper;
 import org.example.repositories.CategoryRepository;
 import org.example.storage.FileSaveFormat;
 import org.example.storage.StorageService;
@@ -20,10 +22,11 @@ import java.util.List;
 public class CategoryController {
     private final CategoryRepository categoryRepository;
     private final StorageService storageService;
+    private final CategoryMapper categoryMapper;
 
     @GetMapping
-    public ResponseEntity<List<CategoryEntity>> index() {
-        List<CategoryEntity> list= categoryRepository.findAll();
+    public ResponseEntity<List<CategoryItemDTO>> index() {
+        List<CategoryItemDTO> list= categoryMapper.categoryListItemDTO(categoryRepository.findAll());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
