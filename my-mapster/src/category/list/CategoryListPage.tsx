@@ -6,10 +6,7 @@ import http_common from "../../http_common.ts";
 import CategoryCard from "./CategoryCard.tsx";
 
 const CategoryListPage = () => {
-
     const [items, setItems] = useState<ICategoryItem[]>([]);
-
-
 
     useEffect(() => {
         http_common.get<ICategoryItem[]>("/api/categories")
@@ -19,8 +16,13 @@ const CategoryListPage = () => {
             });
     }, []);
 
-    const handleDelete = (id: number) => {
-        console.log("Delete item", id);
+    const handleDelete = async (id: number) => {
+        try {
+            await http_common.delete(`/api/categories/${id}`);
+            setItems(items.filter(x => x.id != id));
+        } catch (error) {
+            throw new Error(`Error: ${error}`);
+        }
     }
 
     return (

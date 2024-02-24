@@ -39,13 +39,13 @@ const CategoryCard: React.FC<ICategoryCardProps> = (props) => {
                         </Link>,
 
                         <Popconfirm
-                            title="Are you sure to delete this category?"
+                            title="Ви дійсно бажаєте видалить категорію?"
                             onConfirm={() => handleDelete(id)}
-                            okText="Yes"
-                            cancelText="No"
+                            okText="Так"
+                            cancelText="Ні"
                         >
-                            <Button icon={<DeleteOutlined/>}>
-                                Delete
+                            <Button type={"primary"} danger icon={<DeleteOutlined/>}>
+                                Видалить
                             </Button>
                         </Popconfirm>
                     ]}
